@@ -1,1 +1,1 @@
-console.log("About to start a web server...");
+console.log('About to start a web server...');
