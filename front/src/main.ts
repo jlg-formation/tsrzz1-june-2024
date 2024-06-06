@@ -1,24 +1,17 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import "./style.css";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const svgns = "http://www.w3.org/2000/svg";
+const container = document.querySelector("g.samples");
+if (container === null) {
+  throw new Error("oups");
+}
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+for (let i = 0; i < 10; i++) {
+  const circle = document.createElementNS(svgns, "circle");
+  const x = 34;
+  const y = 89;
+  circle.setAttributeNS(null, "cx", x + "");
+  circle.setAttributeNS(null, "cy", y + "");
+  circle.setAttributeNS(null, "r", "1");
+  container.appendChild(circle);
+}
