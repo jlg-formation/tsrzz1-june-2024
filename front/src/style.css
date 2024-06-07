@@ -1,3 +1,7 @@
+:root {
+  --color: #006a53;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,10 +13,10 @@ body {
 svg {
   width: 50em;
   height: 25em;
-  border: 0.1em solid black;
+  border: 0.1em solid var(--color);
 
   circle {
-    stroke: black;
+    stroke: var(--color);
     stroke-width: 0.02em;
     fill: transparent;
   }
@@ -20,13 +24,13 @@ svg {
   g.samples {
     circle {
       stroke: none;
-      fill: black;
+      fill: var(--color);
     }
   }
 
   g.lines {
     line {
-      stroke: black;
+      stroke: var(--color);
       stroke-width: 0.02em;
     }
   }
@@ -34,7 +38,7 @@ svg {
 
 div.command {
   width: 50em;
-  border: 0.1em solid black;
+  border: 0.1em solid var(--color);
   padding: 0.5em;
 
   display: flex;

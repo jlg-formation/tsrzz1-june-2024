@@ -8,6 +8,7 @@ import { NextFunction } from 'express';
 
 const app = express();
 const port = 3000;
+const publicDir = '../front/dist';
 
 const log = (req: Request, res: Response, next: NextFunction) => {
   console.log('req: ', req.method, req.url);
@@ -18,8 +19,8 @@ app.use(log);
 
 app.use('/api', api);
 
-app.use(express.static('.'));
-app.use(serveIndex('.', { icons: true }));
+app.use(express.static(publicDir));
+app.use(serveIndex(publicDir, { icons: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
