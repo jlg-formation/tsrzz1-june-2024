@@ -8,6 +8,7 @@ export class Command {
 
   constructor(private config: Config) {
     this.render();
+    this.setActions();
   }
 
   onUpdateConfig(callback: Callback) {
@@ -26,5 +27,24 @@ export class Command {
       );
       elt.value = this.config[key] + "";
     }
+  }
+
+  setActions() {
+    const keys = getKeys(this.config);
+    for (const key of keys) {
+      const elt = querySelector(
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
+      elt.addEventListener("input", () => {
+        this.setConfig(key, +elt.value);
+      });
+    }
+  }
+
+  setConfig(key: keyof Config, value: number) {
+    this.config[key] = value;
+    this.render();
+    this.callback(this.config);
   }
 }
