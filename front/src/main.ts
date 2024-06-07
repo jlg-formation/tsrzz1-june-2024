@@ -1,24 +1,18 @@
+import { svgns } from "./constants";
+import { computeAngle, computePointOnCircle } from "./math";
+import { querySelector } from "./misc";
 import "./style.css";
-
-const cx0 = 50;
-const cy0 = 50;
-const r0 = 45;
 
 const samples = 10;
 const multiplicationFactor = 2;
 
-const svgns = "http://www.w3.org/2000/svg";
-const container = document.querySelector("g.samples");
-if (container === null) {
-  throw new Error("oups");
-}
+const container = querySelector("g.samples");
 
 for (let i = 0; i < samples; i++) {
   const circle = document.createElementNS(svgns, "circle");
 
-  const angle = i * ((Math.PI * 2) / samples) + Math.PI / 2;
-  const x = cx0 + r0 * Math.cos(angle);
-  const y = cy0 + r0 * Math.sin(angle);
+  const angle = computeAngle(i, samples);
+  const { x, y } = computePointOnCircle(angle);
 
   circle.setAttributeNS(null, "cx", x + "");
   circle.setAttributeNS(null, "cy", y + "");
@@ -26,23 +20,16 @@ for (let i = 0; i < samples; i++) {
   container.appendChild(circle);
 }
 
-const lineContainer = document.querySelector("g.lines");
-if (lineContainer === null) {
-  throw new Error("oups");
-}
+const lineContainer = querySelector("g.lines");
 
 for (let i = 0; i < samples; i++) {
   const line = document.createElementNS(svgns, "line");
 
-  const angle1 = i * ((Math.PI * 2) / samples) + Math.PI / 2;
-  const angle2 =
-    i * multiplicationFactor * ((Math.PI * 2) / samples) + Math.PI / 2;
+  const angle1 = computeAngle(i, samples);
+  const angle2 = computeAngle(i * multiplicationFactor, samples);
 
-  const x1 = cx0 + r0 * Math.cos(angle1);
-  const y1 = cy0 + r0 * Math.sin(angle1);
-
-  const x2 = cx0 + r0 * Math.cos(angle2);
-  const y2 = cy0 + r0 * Math.sin(angle2);
+  const { x: x1, y: y1 } = computePointOnCircle(angle1);
+  const { x: x2, y: y2 } = computePointOnCircle(angle2);
 
   line.setAttributeNS(null, "x1", x1 + "");
   line.setAttributeNS(null, "y1", y1 + "");
