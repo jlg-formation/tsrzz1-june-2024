@@ -5,6 +5,7 @@ type Callback = (newConfig: Config) => void;
 
 export class Command {
   callback: Callback = () => {};
+  isPlaying = false;
 
   constructor(private config: Config) {
     this.render();
@@ -27,6 +28,11 @@ export class Command {
       );
       elt.value = this.config[key] + "";
     }
+
+    querySelector("div.command div.buttons button.play").innerHTML = this
+      .isPlaying
+      ? "Pause"
+      : "Play";
   }
 
   setActions() {
@@ -40,6 +46,14 @@ export class Command {
         this.setConfig(key, +elt.value);
       });
     }
+
+    querySelector("div.command div.buttons button.play").addEventListener(
+      "click",
+      () => {
+        this.isPlaying = !this.isPlaying;
+        this.render();
+      }
+    );
   }
 
   setConfig(key: keyof Config, value: number) {
