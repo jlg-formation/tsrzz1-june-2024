@@ -4,7 +4,7 @@ import { Config } from "./interfaces/Config";
 import "./style.css";
 
 const config: Config = {
-  samples: 10,
+  samples: 100,
   multiplicationFactor: 2,
 };
 
