@@ -1,4 +1,4 @@
-import { step } from "../constants";
+import { step, url } from "../constants";
 import { Config } from "../interfaces/Config";
 import { getKeys, querySelector, sleep } from "../misc";
 
@@ -66,6 +66,21 @@ export class Command {
         this.render();
         if (this.isPlaying) {
           this.play();
+        }
+      }
+    );
+
+    querySelector("div.command div.buttons button.random").addEventListener(
+      "click",
+      async () => {
+        try {
+          const response = await fetch(url);
+          const data: Config = await response.json();
+          this.config = data;
+          this.render();
+          this.callback(this.config);
+        } catch (err) {
+          console.log("err: ", err);
         }
       }
     );

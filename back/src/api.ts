@@ -4,6 +4,11 @@ import { Config } from './interfaces/Config';
 
 const app = express.Router();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.get('/random-config', (req, res) => {
   const config: Config = {
     samples: random(0, 500),
