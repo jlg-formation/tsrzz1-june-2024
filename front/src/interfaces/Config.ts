@@ -1,4 +1,4 @@
-export interface Config {
+export type Config = {
   samples: number;
   multiplicationFactor: number;
-}
+};
