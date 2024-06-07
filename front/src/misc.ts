@@ -5,3 +5,11 @@ export const querySelector = (selector: string) => {
   }
   return elt;
 };
+
+export const setAttribute = (
+  elt: Element,
+  key: string,
+  value: number
+): void => {
+  elt.setAttributeNS(null, key, value + "");
+};
