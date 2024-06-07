@@ -7,6 +7,5 @@ const config: Config = {
   multiplicationFactor: 2,
 };
 
-const board = new Board();
-board.setConfig(config);
+const board = new Board(config);
 board.render();

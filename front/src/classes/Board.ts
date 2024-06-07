@@ -4,10 +4,7 @@ import { computeAngle, computePointOnCircle } from "../math";
 import { querySelector, setAttribute } from "../misc";
 
 export class Board {
-  config: Config = {
-    samples: 0,
-    multiplicationFactor: 0,
-  };
+  constructor(private config: Config) {}
 
   clean() {
     querySelector("g.samples").innerHTML = "";
