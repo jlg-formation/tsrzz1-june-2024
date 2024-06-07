@@ -1,6 +1,8 @@
+type Class<T> = new () => T;
+
 export const querySelector = <T extends HTMLElement>(
   selector: string,
-  type?: new () => T
+  type?: Class<T>
 ): T => {
   const elt = document.querySelector(selector);
   if (elt === null) {

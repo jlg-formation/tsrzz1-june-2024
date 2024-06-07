@@ -48,7 +48,7 @@ export class Board {
     }
   }
 
-  setConfig(config: Config) {
-    this.config = config;
+  setConfig(config: Partial<Config>) {
+    this.config = { ...this.config, ...config };
   }
 }
